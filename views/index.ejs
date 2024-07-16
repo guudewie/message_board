@@ -5,7 +5,18 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
+    <button>
+      <a href="/new">Add new Message</a>
+    </button>
     <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+      <% for (const message of messages) { %>
+        <p>
+          <div><%= message.user %></div>
+          <div><%= message.text %></div>
+          <div><%= message.added %></div>
+        </p>
+      <% } %>
+      <p></p>
+      <p></p>
   </body>
 </html>
