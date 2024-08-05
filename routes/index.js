@@ -43,7 +43,7 @@ router.post("/reset", function (req, res, next) {
       added: formatDate(new Date()),
     },
   ];
-  req.redirect("/");
+  res.redirect("/");
 });
 
 /* POST form submission. */
