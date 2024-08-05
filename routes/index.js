@@ -2,7 +2,7 @@ const express = require("express");
 const { format } = require("morgan");
 const router = express.Router();
 
-const messages = [
+let messages = [
   {
     text: "Hi there!",
     user: "Amando",
@@ -27,6 +27,22 @@ function formatDate(date) {
 /* GET home page. */
 router.get("/", function (req, res, next) {
   res.render("index", { title: "Mini Messageboard", messages: messages });
+});
+
+/* GET home page. */
+router.post("/reset", function (req, res, next) {
+  messages = [
+    {
+      text: "Hi there!",
+      user: "Amando",
+      added: formatDate(new Date()),
+    },
+    {
+      text: "Hello World!",
+      user: "Charles",
+      added: formatDate(new Date()),
+    },
+  ];
 });
 
 /* POST form submission. */
