@@ -29,7 +29,7 @@ router.get("/", function (req, res, next) {
   res.render("index", { title: "Mini Messageboard", messages: messages });
 });
 
-/* GET home page. */
+/* POST reset messages. */
 router.post("/reset", function (req, res, next) {
   messages = [
     {
