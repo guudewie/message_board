@@ -29,8 +29,8 @@ router.get("/", function (req, res, next) {
   res.render("index", { title: "Mini Messageboard", messages: messages });
 });
 
-/* POST reset messages. */
-router.post("/reset", function (req, res, next) {
+/* GET reset messages. */
+router.get("/reset", function (req, res, next) {
   messages = [
     {
       text: "Hi there!",
