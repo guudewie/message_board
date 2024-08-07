@@ -1,19 +1,7 @@
 const express = require("express");
 const { format } = require("morgan");
 const router = express.Router();
-
-let messages = [
-  {
-    text: "Hi there!",
-    user: "Amando",
-    added: formatDate(new Date()),
-  },
-  {
-    text: "Hello World!",
-    user: "Charles",
-    added: formatDate(new Date()),
-  },
-];
+const db = require("../db/queries");
 
 function formatDate(date) {
   return date.toLocaleDateString(undefined, {
@@ -25,34 +13,22 @@ function formatDate(date) {
 }
 
 /* GET home page. */
-router.get("/", function (req, res, next) {
+router.get("/", async function (req, res, next) {
+  const messages = await db.getAllMessages();
   res.render("index", { title: "Mini Messageboard", messages: messages });
 });
 
 /* GET reset messages. */
-router.get("/reset", function (req, res, next) {
-  messages = [
-    {
-      text: "Hi there!",
-      user: "Amando",
-      added: formatDate(new Date()),
-    },
-    {
-      text: "Hello World!",
-      user: "Charles",
-      added: formatDate(new Date()),
-    },
-  ];
+router.get("/reset", async function (req, res, next) {
+  await db.deleteAllMessages();
   res.redirect("/");
 });
 
 /* POST form submission. */
-router.post("/new", function (req, res, next) {
+router.post("/new", async function (req, res, next) {
   let text = req.body.text;
   let user = req.body.user;
-  messages.push({ text: text, user: user, added: formatDate(new Date()) });
-  console.log(messages);
-  console.log("body", req);
+  await db.insertMessage(user, text);
   res.redirect("/");
 });
 
