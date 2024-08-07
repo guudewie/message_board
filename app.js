@@ -1,3 +1,6 @@
+//import environment variables
+require("dotenv").config();
+
 const createError = require("http-errors");
 const express = require("express");
 const path = require("path");
@@ -8,10 +11,6 @@ const indexRouter = require("./routes/index");
 const newRouter = require("./routes/new");
 
 const app = express();
-
-//import environment variables
-require("dotenv").config();
-console.log(process.env.NODE_ENV);
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
