@@ -5,6 +5,10 @@ async function getAllMessages() {
   return rows;
 }
 
+async function deleteAllMessages() {
+  await pool.query("TRUNCATE messages");
+}
+
 async function insertMessage(username, message) {
   await pool.query("INSERT INTO messages (username, message) VALUES ($1, $2)", [
     username,
@@ -12,4 +16,4 @@ async function insertMessage(username, message) {
   ]);
 }
 
-insertMessage("guudewie", "Hello World!");
+module.exports = { getAllMessages, deleteAllMessages, insertMessage };
