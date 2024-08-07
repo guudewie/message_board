@@ -11,9 +11,9 @@
     <h1><%= title %></h1>
       <% for (const message of messages) { %>
         <p>
-          <div><%= message.user %></div>
-          <div><%= message.text %></div>
-          <div><%= message.added %></div>
+          <div><%= message.username %></div>
+          <div><%= message.message %></div>
+          <div><%= message.created_at %></div>
         </p>
       <% } %>
       <p></p>
