@@ -25,7 +25,8 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/", indexRouter);
 app.use("/new", newRouter);
 
-const PORT = process.env.PORT || 3000;
+const PORT =
+  process.env.PORT || process.env.PG_PORT || process.env.APP_PORT || 3000;
 app.listen(PORT, () => console.log(`Listening on port ${PORT}!`));
 
 // catch 404 and forward to error handler
